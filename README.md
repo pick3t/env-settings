@@ -1,1 +1,1 @@
-# env-settings
+# basic setting for an Nvimmer
