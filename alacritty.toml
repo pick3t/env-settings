@@ -1,0 +1,21 @@
+shell = "C:\\Windows\\System32\\wsl.exe ~"
+
+[env]
+TERM = "xterm-256color"
+
+[window]
+startup_mode = "Maximized"
+padding = { x = 0, y = 0 }
+dynamic_padding = true
+opacity = 0.9
+
+[font]
+normal = { family = "CaskaydiaCove NFM", style = "Regular" }
+size = 17.0
+builtin_box_drawing = true
+
+[selection]
+save_to_clipboard = true
+
+[scrolling]
+history = 20000
