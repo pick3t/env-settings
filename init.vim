@@ -33,6 +33,8 @@ lua<<EOF
 require'mason'.setup {}
 require'which-key'.setup {}
 require'nvim-autopairs'.setup {}
+
+package.loaded['coc-init'] = nil
 require'coc-init'
 
 require'nvim-treesitter.configs'.setup {
@@ -82,9 +84,6 @@ noremap <Left> <Nop>
 noremap <Right> <Nop>
 " nvim-tree
 nmap <leader>ntt :NvimTreeFindFile!<cr>
-" move between buffers
-nnoremap <C-J> :bprev<CR>
-nnoremap <C-K> :bnext<CR>
 " move lines up and down
 nnoremap <A-j> :m .+1<CR>==
 nnoremap <A-k> :m .-2<CR>==
@@ -96,12 +95,14 @@ vnoremap <A-k> :m '<-2<CR>gv=gv
 nnoremap <A-c> :let @+ = expand('%:t')<CR>
 vnoremap <A-f> y:RgRaw -w <C-r>"<CR>
 " nvim-window
-map <silent> <leader>w :lua require('nvim-window').pick()<CR>
+map <silent> , :lua require('nvim-window').pick()<CR>
 " telescope
 nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+nnoremap <leader>th <cmd>lua require('telescope.builtin').search_history()<cr>
 nnoremap <leader>fg <cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<cr>
+vnoremap <leader>fv <cmd>lua require('telescope-live-grep-args.shortcuts').grep_visual_selection()<cr>
 
 :command Config :e ~/.config/nvim/init.vim
 
@@ -117,29 +118,7 @@ xnoremap m d
 nnoremap mm dd
 nnoremap M D
 
-" Enable line numbers
-set relativenumber
-set number
-
-set clipboard+=unnamedplus
-
-" Theme
-set termguicolors
-let g:gruvbox_material_foreground = 'original'
-let g:gruvbox_material_enable_italic=1
-let g:gruvbox_material_dim_inactive_windows = 1
-set background=dark
-colorscheme gruvbox-material
-
-lua <<EOF
--- override nvim-treesitter captures' settings
-vim.api.nvim_set_hl(0, "@keyword.cpp", { link = "RedItalic" })
-vim.api.nvim_set_hl(0, "@keyword.type.cpp", { link = "RedItalic" })
-vim.api.nvim_set_hl(0, "@keyword.modifier.cpp", { link = "RedItalic" })
-vim.api.nvim_set_hl(0, "@module.cpp", { link = "Yellow" })
-vim.api.nvim_set_hl(0, "@type.cpp", { link = "Yellow" })
-vim.api.nvim_set_hl(0, "@type.builtin.cpp", { link = "Yellow" })
-EOF
+nnoremap <g-t-c> :tabc<CR>
 
 function! GetRelativePath()
     let current_file = expand('%:p')
@@ -150,9 +129,40 @@ endfunction
 
 nnoremap <leader><A-c> :call GetRelativePath()<CR>
 
-function OpenMarkdownPreview (url)
-    execute "silent ! chrome --new-window " . a:url
-endfunction
-let g:mkdp_browserfunc = 'OpenMarkdownPreview'
+" Enable line numbers
+set relativenumber
+set number
 
-nnoremap <g-t-c> :tabc<CR>
+set clipboard+=unnamedplus
+
+" Theme
+set termguicolors
+let g:gruvbox_material_foreground = 'original'
+let g:gruvbox_material_enable_italic = 1
+let g:gruvbox_material_dim_inactive_windows = 1
+let g:gruvbox_material_disable_italic_comment = 1
+set background=dark
+colorscheme gruvbox-material
+
+lua <<EOF
+-- override nvim-treesitter captures' settings
+vim.api.nvim_set_hl(0, "@keyword.cpp", { link = "RedItalic" })
+vim.api.nvim_set_hl(0, "@keyword.type.cpp", { link = "RedItalic" })
+vim.api.nvim_set_hl(0, "@keyword.modifier.cpp", { link = "RedItalic" })
+vim.api.nvim_set_hl(0, "@keyword.conditional.cpp", { link = "RedItalic" })
+vim.api.nvim_set_hl(0, "@module.cpp", { link = "Yellow" })
+vim.api.nvim_set_hl(0, "@type.cpp", { link = "Yellow" })
+vim.api.nvim_set_hl(0, "@type.builtin.cpp", { link = "Yellow" })
+
+vim.api.nvim_set_hl(0, "@ColorColumn", { link = "Yellow" })
+EOF
+
+function! Collect(cmd)
+    redir => cmd_output
+    silent execute a:cmd
+    redir END
+    new
+    setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
+    call setline(1, split(cmd_output, '\n'))
+    setlocal nomodifiable
+endfunction
