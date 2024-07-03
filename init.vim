@@ -53,11 +53,24 @@ require'nvim-treesitter.configs'.setup {
 require'lualine'.setup { options = { theme = 'gruvbox-material' } }
 require'nvim-web-devicons'
 require'nvim-tree'.setup {}
-require('nvim-window').setup({
+require'nvim-window'.setup {
   normal_hl = 'BlackOnLightYellow',
   hint_hl = 'Bold',
   border = 'none'
-})
+}
+
+require'telescope'.setup {
+    pickers = {
+    buffers = {
+        mappings = {
+            n = {
+                ["dd"] = "delete_buffer",
+            }
+        }
+    }
+    }
+}
+
 EOF
 
 " set auto folding for xml Files
@@ -97,7 +110,7 @@ vnoremap <A-f> y:RgRaw -w <C-r>"<CR>
 " nvim-window
 map <silent> , :lua require('nvim-window').pick()<CR>
 " telescope
-nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <C-p> <cmd>lua require('telescope.builtin').find_files()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 nnoremap <leader>th <cmd>lua require('telescope.builtin').search_history()<cr>
