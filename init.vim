@@ -133,6 +133,8 @@ nnoremap M D
 
 nnoremap <g-t-c> :tabc<CR>
 
+nnoremap g* :let @/ = '\<' . expand('<cword>') . '\>'<CR>
+
 function! GetRelativePath()
     let current_file = expand('%:p')
     let current_dir = getcwd()
