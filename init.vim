@@ -50,6 +50,13 @@ require'nvim-treesitter.configs'.setup {
     }
 }
 
+local custom_folds = [[
+     [
+         (function_definition)
+       ] @fold
+   ]]
+vim.treesitter.query.set("cpp", "folds", custom_folds)
+
 require'lualine'.setup { options = { theme = 'gruvbox-material' } }
 require'nvim-web-devicons'
 require'nvim-tree'.setup {}
@@ -70,7 +77,6 @@ require'telescope'.setup {
     }
     }
 }
-
 EOF
 
 " set auto folding for xml Files
@@ -159,6 +165,11 @@ let g:gruvbox_material_disable_italic_comment = 1
 set background=dark
 colorscheme gruvbox-material
 
+" make cursorline underline
+" hi clear CursorLine
+" hi CursorLine gui=underline cterm=underline
+set cursorline
+
 lua <<EOF
 -- override nvim-treesitter captures' settings
 vim.api.nvim_set_hl(0, "@keyword.cpp", { link = "RedItalic" })
@@ -168,8 +179,6 @@ vim.api.nvim_set_hl(0, "@keyword.conditional.cpp", { link = "RedItalic" })
 vim.api.nvim_set_hl(0, "@module.cpp", { link = "Yellow" })
 vim.api.nvim_set_hl(0, "@type.cpp", { link = "Yellow" })
 vim.api.nvim_set_hl(0, "@type.builtin.cpp", { link = "Yellow" })
-
-vim.api.nvim_set_hl(0, "@ColorColumn", { link = "Yellow" })
 EOF
 
 function! Collect(cmd)
