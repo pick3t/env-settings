@@ -1,131 +1,79 @@
 ---
 Language: Cpp
-
-DisableFormat: false
-
-ColumnLimit: 120
-IndentWidth: 4
+LineEnding: LF
+MaxEmptyLinesToKeep: 1
 TabWidth: 4
 UseTab: Never
-MaxEmptyLinesToKeep: 1
-LineEnding: LF
+IndentWidth: 4
+ColumnLimit: 120
 
-KeepEmptyLines:
-  AtEndOfFile: false
-  AtStartOfBlock: false
-  AtStartOfFile: false
+AccessModifierOffset: -4
+AlignAfterOpenBracket: Align
+AlignConsecutiveBitFields: AcrossComments
+AlignEscapedNewlines: Right
+AlignTrailingComments: true
+AllowShortBlocksOnASingleLine: Never
+AllowShortLambdasOnASingleLine: All
+AllowShortFunctionsOnASingleLine: None
+AllowShortIfStatementsOnASingleLine: Never
+AttributeMacros: 
+  []
+BitFieldColonSpacing: Both
+BraceWrapping: 
+  AfterCaseLabel: false
+  AfterClass: false
+  AfterControlStatement: false
+  AfterEnum: false
+  AfterFunction: true
+  AfterNamespace: false
+  AfterObjCDeclaration: false
+  AfterStruct: false
+  AfterUnion: false
+  AfterExternBlock: false
+  BeforeCatch: false
+  BeforeElse: false
+  IndentBraces: false
+  SplitEmptyFunction: false
+  SplitEmptyRecord: false
+  SplitEmptyNamespace: false
+  BeforeLambdaBody: false
+  BeforeWhile: false
+BreakBeforeBraces: Custom
+BreakInheritanceList: AfterColon
+BreakBeforeConceptDeclarations: true
+BreakConstructorInitializers: AfterColon
+BreakStringLiterals: true
+CompactNamespaces: false
+Cpp11BracedListStyle: false
+EmptyLineBeforeAccessModifier: LogicalBlock
+ForEachMacros: 
+  []
+IncludeBlocks: Regroup
+IncludeCategories: 
+  - Regex: '^"(llvm|llvm-c|clang|clang-c)/'
+    Priority: 2
+    SortPriority: 2
+    CaseSensitive: true
+  - Regex: '^((<|")(gtest|gmock|isl|json)/)'
+    Priority: 3
+  - Regex: '<[[:alnum:].]+>'
+    Priority: 4
+  - Regex: '.*'
+    Priority: 1
+    SortPriority: 0
+NamespaceIndentation: None
 PointerAlignment: Right
 ReferenceAlignment: Left
 ReflowComments: true
 SortIncludes: false
 SortUsingDeclarations: false
-
-SpaceAfterCStyleCast: false
-SpaceAfterLogicalNot: false
 SpaceAfterTemplateKeyword: true
 SpaceBeforeAssignmentOperators: true
+SpaceBeforeCaseColon: true
 SpaceBeforeCpp11BracedList: true
 SpaceBeforeCtorInitializerColon: true
 SpaceBeforeInheritanceColon: true
 SpaceBeforeParens: ControlStatements
 SpaceBeforeRangeBasedForLoopColon: true
-SpaceInEmptyParentheses: false
-SpacesInAngles: false
-SpacesInCStyleCastParentheses: false
-SpacesInContainerLiterals: false
-SpacesInParentheses: false
-SpacesInSquareBrackets: false
-
-AlignAfterOpenBracket: Align
-AlignArrayOfStructures: Left
-AlignConsecutiveBitFields:
-  Enabled: true
-  AcrossEmptyLines: false
-  AcrossComments: true
-AlignEscapedNewlines: Right
-AlignTrailingComments:
-  Kind: Always
-  OverEmptyLines: 0
-
-AllowAllParametersOfDeclarationOnNextLine: false
-AllowBreakBeforeNoexceptSpecifier: Never
-AllowShortBlocksOnASingleLine: Never
-AllowShortCaseLabelsOnASingleLine: false
-AllowShortCompoundRequirementOnASingleLine: true
-AllowShortEnumsOnASingleLine: false
-AllowShortFunctionsOnASingleLine: None
-AllowShortIfStatementsOnASingleLine: Never
-AllowShortLambdasOnASingleLine: Empty
-AllowShortLoopsOnASingleLine: false
-AlwaysBreakBeforeMultilineStrings: false
-
-AttributeMacros: []
-
-BinPackArguments: true
-BinPackParameters: OnePerLine
-
-BitFieldColonSpacing: Both
-
-BreakBeforeBraces: Custom
-BraceWrapping:
-  AfterClass: false
-  AfterCaseLabel: false
-  AfterControlStatement: Never
-  AfterEnum: false
-  AfterStruct: false
-  AfterFunction: true
-  AfterNamespace: false
-  AfterUnion: false
-  AfterExternBlock: false
-  BeforeCatch: false
-  BeforeElse: false
-  BeforeLambdaBody: false
-  BeforeWhile: false
-  SplitEmptyFunction: false
-  SplitEmptyRecord: false
-  SplitEmptyNamespace: false
-
-BreakAfterAttributes: Always
-BreakAfterReturnType: ExceptShortType
-BreakArrays: false
-BreakBeforeConceptDeclarations: true
-BreakBeforeTernaryOperator: false
-BreakConstructorInitializers: AfterColon
-BreakFunctionDefinitionParameters: false
-BreakInheritanceList: AfterColon
-BreakStringLiterals: true
 BreakTemplateDeclarations: Yes
-
-CompactNamespaces: false
-NamespaceIndentation: None
-
-Cpp11BracedListStyle: false
-
-EmptyLineAfterAccessModifier: Never
-EmptyLineBeforeAccessModifier: LogicalBlock
-IndentAccessModifiers: false
-AccessModifierOffset: -4
-
-ForEachMacros: []
-IfMacros: []
-
-IncludeBlocks: Regroup
-IncludeCategories:
-  - Regex:           '^"(llvm|llvm-c|clang|clang-c)/'
-    Priority:        2
-    SortPriority:    2
-    CaseSensitive:   true
-  - Regex:           '^((<|")(gtest|gmock|isl|json)/)'
-    Priority:        3
-  - Regex:           '<[[:alnum:].]+>'
-    Priority:        4
-  - Regex:           '.*'
-    Priority:        1
-    SortPriority:    0
-
-PackConstructorInitializers: NextLine
-
-QualifierAlignment: Custom
-QualifierOrder: [static, inline, constexpr, const, volatile, type]
-
 ...
